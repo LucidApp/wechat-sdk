@@ -19,14 +19,14 @@
 ## 快速开始
 
 ```
-import "github.com/silenceper/wechat/v2"
+import "github.com/lucidapp/wechatsdk/v2"
 ```
 
 以下是一个微信公众号处理消息接收以及回复的例子：
 
 ```go
 // 使用memcache保存access_token，也可选择redis或自定义cache
-wc := wechat.NewWechat()
+wc := wechatsdk.NewWechat()
 memory := cache.NewMemory()
 cfg := &offConfig.Config{
     AppID:     "xxx",
