@@ -8,5 +8,5 @@ Package wechat provide wechat sdk for go
 
 */
 
-// Package wechat provide wechat sdk for go
-package wechat
+// Package wechatsdk provide wechat sdk for go
+package wechatsdk
