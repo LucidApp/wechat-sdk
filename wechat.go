@@ -1,4 +1,4 @@
-package wechat
+package wechatsdk
 
 import (
 	"os"
