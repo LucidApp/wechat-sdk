@@ -5,17 +5,17 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/silenceper/wechat/v2/cache"
-	"github.com/silenceper/wechat/v2/miniprogram"
-	miniConfig "github.com/silenceper/wechat/v2/miniprogram/config"
-	"github.com/silenceper/wechat/v2/officialaccount"
-	offConfig "github.com/silenceper/wechat/v2/officialaccount/config"
-	"github.com/silenceper/wechat/v2/openplatform"
-	openConfig "github.com/silenceper/wechat/v2/openplatform/config"
-	"github.com/silenceper/wechat/v2/pay"
-	payConfig "github.com/silenceper/wechat/v2/pay/config"
-	"github.com/silenceper/wechat/v2/work"
-	workConfig "github.com/silenceper/wechat/v2/work/config"
+	"github.com/lucidapp/wechatsdk/v2/cache"
+	"github.com/lucidapp/wechatsdk/v2/miniprogram"
+	miniConfig "github.com/lucidapp/wechatsdk/v2/miniprogram/config"
+	"github.com/lucidapp/wechatsdk/v2/officialaccount"
+	offConfig "github.com/lucidapp/wechatsdk/v2/officialaccount/config"
+	"github.com/lucidapp/wechatsdk/v2/openplatform"
+	openConfig "github.com/lucidapp/wechatsdk/v2/openplatform/config"
+	"github.com/lucidapp/wechatsdk/v2/pay"
+	payConfig "github.com/lucidapp/wechatsdk/v2/pay/config"
+	"github.com/lucidapp/wechatsdk/v2/work"
+	workConfig "github.com/lucidapp/wechatsdk/v2/work/config"
 )
 
 func init() {

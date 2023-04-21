@@ -1,17 +1,17 @@
 package work
 
 import (
-	"github.com/silenceper/wechat/v2/credential"
-	"github.com/silenceper/wechat/v2/work/addresslist"
-	"github.com/silenceper/wechat/v2/work/config"
-	"github.com/silenceper/wechat/v2/work/context"
-	"github.com/silenceper/wechat/v2/work/externalcontact"
-	"github.com/silenceper/wechat/v2/work/kf"
-	"github.com/silenceper/wechat/v2/work/material"
-	"github.com/silenceper/wechat/v2/work/message"
-	"github.com/silenceper/wechat/v2/work/msgaudit"
-	"github.com/silenceper/wechat/v2/work/oauth"
-	"github.com/silenceper/wechat/v2/work/robot"
+	"github.com/lucidapp/wechatsdk/v2/credential"
+	"github.com/lucidapp/wechatsdk/v2/work/addresslist"
+	"github.com/lucidapp/wechatsdk/v2/work/config"
+	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdk/v2/work/externalcontact"
+	"github.com/lucidapp/wechatsdk/v2/work/kf"
+	"github.com/lucidapp/wechatsdk/v2/work/material"
+	"github.com/lucidapp/wechatsdk/v2/work/message"
+	"github.com/lucidapp/wechatsdk/v2/work/msgaudit"
+	"github.com/lucidapp/wechatsdk/v2/work/oauth"
+	"github.com/lucidapp/wechatsdk/v2/work/robot"
 )
 
 // Work 企业微信
