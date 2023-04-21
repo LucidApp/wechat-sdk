@@ -1,4 +1,4 @@
-# WeChat SDK for Go
+# WeChat SDK for Go （alias from [silenceper/wechat](https://github.com/silenceper/wechat)）
 
 ![Go](https://github.com/silenceper/wechat/workflows/Go/badge.svg?branch=release-2.0)
 [![Go Report Card](https://goreportcard.com/badge/github.com/silenceper/wechat)](https://goreportcard.com/report/github.com/silenceper/wechat)
