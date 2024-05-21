@@ -1,10 +1,10 @@
 package kf
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/cache"
-	"github.com/lucidapp/wechatsdk/v2/credential"
-	"github.com/lucidapp/wechatsdk/v2/work/config"
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/cache"
+	"github.com/lucidapp/wechatsdkgo/v2/credential"
+	"github.com/lucidapp/wechatsdkgo/v2/work/config"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 微信客服实例

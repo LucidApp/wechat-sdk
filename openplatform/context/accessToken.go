@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/lucidapp/wechatsdk/v2/cache"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/cache"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
@@ -100,11 +100,8 @@ func (ctx *Context) GetPreCodeContext(stdCtx context.Context) (string, error) {
 	var ret struct {
 		PreCode string `json:"pre_auth_code"`
 	}
-	if err := json.Unmarshal(body, &ret); err != nil {
-		return "", err
-	}
-
-	return ret.PreCode, nil
+	err = json.Unmarshal(body, &ret)
+	return ret.PreCode, err
 }
 
 // GetPreCode 获取预授权码

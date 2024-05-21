@@ -1,16 +1,21 @@
 package addresslist
 
 import (
+	"fmt"
 	"strings"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
 	// userSimpleListURL 获取部门成员
 	userSimpleListURL = "https://qyapi.weixin.qq.com/cgi-bin/user/simplelist"
+	// userCreateURL 创建成员
+	userCreateURL = "https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token=%s"
 	// userGetURL 读取成员
 	userGetURL = "https://qyapi.weixin.qq.com/cgi-bin/user/get"
+	// userDeleteURL 删除成员
+	userDeleteURL = "https://qyapi.weixin.qq.com/cgi-bin/user/delete"
 	// userListIDURL 获取成员ID列表
 	userListIDURL = "https://qyapi.weixin.qq.com/cgi-bin/user/list_id"
 	// convertToOpenIDURL userID转openID
@@ -56,10 +61,97 @@ func (r *Client) UserSimpleList(departmentID int) ([]*UserList, error) {
 	}
 	result := &UserSimpleListResponse{}
 	err = util.DecodeWithError(response, result, "UserSimpleList")
-	if err != nil {
+	return result.UserList, err
+}
+
+type (
+	// UserCreateRequest 创建成员数据请求
+	UserCreateRequest struct {
+		UserID         string   `json:"userid"`
+		Name           string   `json:"name"`
+		Alias          string   `json:"alias"`
+		Mobile         string   `json:"mobile"`
+		Department     []int    `json:"department"`
+		Order          []int    `json:"order"`
+		Position       string   `json:"position"`
+		Gender         int      `json:"gender"`
+		Email          string   `json:"email"`
+		BizMail        string   `json:"biz_mail"`
+		IsLeaderInDept []int    `json:"is_leader_in_dept"`
+		DirectLeader   []string `json:"direct_leader"`
+		Enable         int      `json:"enable"`
+		AvatarMediaid  string   `json:"avatar_mediaid"`
+		Telephone      string   `json:"telephone"`
+		Address        string   `json:"address"`
+		MainDepartment int      `json:"main_department"`
+		Extattr        struct {
+			Attrs []ExtraAttr `json:"attrs"`
+		} `json:"extattr"`
+		ToInvite         bool            `json:"to_invite"`
+		ExternalPosition string          `json:"external_position"`
+		ExternalProfile  ExternalProfile `json:"external_profile"`
+	}
+	// ExtraAttr 扩展属性
+	ExtraAttr struct {
+		Type int    `json:"type"`
+		Name string `json:"name"`
+		Text struct {
+			Value string `json:"value"`
+		} `json:"text,omitempty"`
+		Web struct {
+			URL   string `json:"url"`
+			Title string `json:"title"`
+		} `json:"web,omitempty"`
+	}
+	// ExternalProfile 成员对外信息
+	ExternalProfile struct {
+		ExternalCorpName string `json:"external_corp_name"`
+		WechatChannels   struct {
+			Nickname string `json:"nickname"`
+			Status   int    `json:"status"`
+		} `json:"wechat_channels"`
+		ExternalAttr []ExternalProfileAttr `json:"external_attr"`
+	}
+	// ExternalProfileAttr 成员对外信息属性
+	ExternalProfileAttr struct {
+		Type int    `json:"type"`
+		Name string `json:"name"`
+		Text struct {
+			Value string `json:"value"`
+		} `json:"text,omitempty"`
+		Web struct {
+			URL   string `json:"url"`
+			Title string `json:"title"`
+		} `json:"web,omitempty"`
+		Miniprogram struct {
+			Appid    string `json:"appid"`
+			Pagepath string `json:"pagepath"`
+			Title    string `json:"title"`
+		} `json:"miniprogram,omitempty"`
+	}
+	// UserCreateResponse 创建成员数据响应
+	UserCreateResponse struct {
+		util.CommonError
+	}
+)
+
+// UserCreate 创建成员
+// @see https://developer.work.weixin.qq.com/document/path/90195
+func (r *Client) UserCreate(req *UserCreateRequest) (*UserCreateResponse, error) {
+	var (
+		accessToken string
+		err         error
+	)
+	if accessToken, err = r.GetAccessToken(); err != nil {
 		return nil, err
 	}
-	return result.UserList, nil
+	var response []byte
+	if response, err = util.PostJSON(fmt.Sprintf(userCreateURL, accessToken), req); err != nil {
+		return nil, err
+	}
+	result := &UserCreateResponse{}
+	err = util.DecodeWithError(response, result, "UserCreate")
+	return result, err
 }
 
 // UserGetResponse 获取部门成员响应
@@ -124,7 +216,7 @@ type UserGetResponse struct {
 	} `json:"external_profile"` // 成员对外属性，字段详情见对外属性；代开发自建应用需要管理员授权才返回；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
 }
 
-// UserGet 获取部门成员
+// UserGet 读取成员
 // @see https://developer.work.weixin.qq.com/document/path/90196
 func (r *Client) UserGet(UserID string) (*UserGetResponse, error) {
 	var (
@@ -140,18 +232,47 @@ func (r *Client) UserGet(UserID string) (*UserGetResponse, error) {
 		strings.Join([]string{
 			userGetURL,
 			util.Query(map[string]interface{}{
-				"access_token":  accessToken,
-				"department_id": UserID,
+				"access_token": accessToken,
+				"userid":       UserID,
 			}),
 		}, "?")); err != nil {
 		return nil, err
 	}
 	result := &UserGetResponse{}
 	err = util.DecodeWithError(response, result, "UserGet")
-	if err != nil {
+	return result, err
+}
+
+type (
+	// UserDeleteResponse 删除成员数据响应
+	UserDeleteResponse struct {
+		util.CommonError
+	}
+)
+
+// UserDelete 删除成员
+// @see https://developer.work.weixin.qq.com/document/path/90334
+func (r *Client) UserDelete(userID string) (*UserDeleteResponse, error) {
+	var (
+		accessToken string
+		err         error
+	)
+	if accessToken, err = r.GetAccessToken(); err != nil {
 		return nil, err
 	}
-	return result, nil
+	var response []byte
+	if response, err = util.HTTPGet(strings.Join([]string{
+		userDeleteURL,
+		util.Query(map[string]interface{}{
+			"access_token": accessToken,
+			"userid":       userID,
+		}),
+	}, "?")); err != nil {
+		return nil, err
+	}
+	result := &UserDeleteResponse{}
+	err = util.DecodeWithError(response, result, "UserDelete")
+	return result, err
 }
 
 // UserListIDRequest 获取成员ID列表请求
@@ -193,10 +314,8 @@ func (r *Client) UserListID(req *UserListIDRequest) (*UserListIDResponse, error)
 		return nil, err
 	}
 	result := &UserListIDResponse{}
-	if err = util.DecodeWithError(response, result, "UserListID"); err != nil {
-		return nil, err
-	}
-	return result, nil
+	err = util.DecodeWithError(response, result, "UserListID")
+	return result, err
 }
 
 type (
@@ -235,10 +354,8 @@ func (r *Client) ConvertToOpenID(userID string) (string, error) {
 		return "", err
 	}
 	result := &convertToOpenIDResponse{}
-	if err = util.DecodeWithError(response, result, "ConvertToOpenID"); err != nil {
-		return "", err
-	}
-	return result.OpenID, nil
+	err = util.DecodeWithError(response, result, "ConvertToOpenID")
+	return result.OpenID, err
 }
 
 type (
@@ -277,8 +394,6 @@ func (r *Client) ConvertToUserID(openID string) (string, error) {
 		return "", err
 	}
 	result := &convertToUserIDResponse{}
-	if err = util.DecodeWithError(response, result, "ConvertToUserID"); err != nil {
-		return "", err
-	}
-	return result.UserID, nil
+	err = util.DecodeWithError(response, result, "ConvertToUserID")
+	return result.UserID, err
 }

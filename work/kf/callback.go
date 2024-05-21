@@ -3,7 +3,7 @@ package kf
 import (
 	"encoding/xml"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // SignatureOptions 微信服务器验证参数
@@ -92,8 +92,6 @@ func (r *Client) GetCallbackMessage(encryptedMsg []byte) (msg CallbackMessage, e
 	if err != nil {
 		return msg, NewSDKErr(40016)
 	}
-	if err = xml.Unmarshal(bData, &msg); err != nil {
-		return msg, err
-	}
+	err = xml.Unmarshal(bData, &msg)
 	return msg, err
 }

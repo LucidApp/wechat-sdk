@@ -17,6 +17,19 @@ import (
 	"golang.org/x/crypto/pkcs12"
 )
 
+// URIModifier URI修改器
+type URIModifier func(uri string) string
+
+var uriModifier URIModifier
+
+// DefaultHTTPClient 默认httpClient
+var DefaultHTTPClient = http.DefaultClient
+
+// SetURIModifier 设置URI修改器
+func SetURIModifier(fn URIModifier) {
+	uriModifier = fn
+}
+
 // HTTPGet get 请求
 func HTTPGet(uri string) ([]byte, error) {
 	return HTTPGetContext(context.Background(), uri)
@@ -24,11 +37,14 @@ func HTTPGet(uri string) ([]byte, error) {
 
 // HTTPGetContext get 请求
 func HTTPGetContext(ctx context.Context, uri string) ([]byte, error) {
+	if uriModifier != nil {
+		uri = uriModifier(uri)
+	}
 	request, err := http.NewRequestWithContext(ctx, http.MethodGet, uri, nil)
 	if err != nil {
 		return nil, err
 	}
-	response, err := http.DefaultClient.Do(request)
+	response, err := DefaultHTTPClient.Do(request)
 	if err != nil {
 		return nil, err
 	}
@@ -47,6 +63,9 @@ func HTTPPost(uri string, data string) ([]byte, error) {
 
 // HTTPPostContext post 请求
 func HTTPPostContext(ctx context.Context, uri string, data []byte, header map[string]string) ([]byte, error) {
+	if uriModifier != nil {
+		uri = uriModifier(uri)
+	}
 	body := bytes.NewBuffer(data)
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, uri, body)
 	if err != nil {
@@ -57,7 +76,7 @@ func HTTPPostContext(ctx context.Context, uri string, data []byte, header map[st
 		request.Header.Set(key, value)
 	}
 
-	response, err := http.DefaultClient.Do(request)
+	response, err := DefaultHTTPClient.Do(request)
 	if err != nil {
 		return nil, err
 	}
@@ -71,6 +90,9 @@ func HTTPPostContext(ctx context.Context, uri string, data []byte, header map[st
 
 // PostJSONContext post json 数据请求
 func PostJSONContext(ctx context.Context, uri string, obj interface{}) ([]byte, error) {
+	if uriModifier != nil {
+		uri = uriModifier(uri)
+	}
 	jsonBuf := new(bytes.Buffer)
 	enc := json.NewEncoder(jsonBuf)
 	enc.SetEscapeHTML(false)
@@ -83,7 +105,7 @@ func PostJSONContext(ctx context.Context, uri string, obj interface{}) ([]byte, 
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json;charset=utf-8")
-	response, err := http.DefaultClient.Do(req)
+	response, err := DefaultHTTPClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +122,7 @@ func PostJSON(uri string, obj interface{}) ([]byte, error) {
 	return PostJSONContext(context.Background(), uri, obj)
 }
 
-// PostJSONWithRespContentType post json数据请求，且返回数据类型
+// PostJSONWithRespContentType post json 数据请求，且返回数据类型
 func PostJSONWithRespContentType(uri string, obj interface{}) ([]byte, string, error) {
 	jsonBuf := new(bytes.Buffer)
 	enc := json.NewEncoder(jsonBuf)
@@ -110,7 +132,7 @@ func PostJSONWithRespContentType(uri string, obj interface{}) ([]byte, string, e
 		return nil, "", err
 	}
 
-	response, err := http.Post(uri, "application/json;charset=utf-8", jsonBuf)
+	response, err := DefaultHTTPClient.Post(uri, "application/json;charset=utf-8", jsonBuf)
 	if err != nil {
 		return nil, "", err
 	}
@@ -146,6 +168,9 @@ type MultipartFormField struct {
 
 // PostMultipartForm 上传文件或其他多个字段
 func PostMultipartForm(fields []MultipartFormField, uri string) (respBody []byte, err error) {
+	if uriModifier != nil {
+		uri = uriModifier(uri)
+	}
 	bodyBuf := &bytes.Buffer{}
 	bodyWriter := multipart.NewWriter(bodyBuf)
 
@@ -183,7 +208,7 @@ func PostMultipartForm(fields []MultipartFormField, uri string) (respBody []byte
 	contentType := bodyWriter.FormDataContentType()
 	bodyWriter.Close()
 
-	resp, e := http.Post(uri, contentType, bodyBuf)
+	resp, e := DefaultHTTPClient.Post(uri, contentType, bodyBuf)
 	if e != nil {
 		err = e
 		return
@@ -198,13 +223,16 @@ func PostMultipartForm(fields []MultipartFormField, uri string) (respBody []byte
 
 // PostXML perform a HTTP/POST request with XML body
 func PostXML(uri string, obj interface{}) ([]byte, error) {
+	if uriModifier != nil {
+		uri = uriModifier(uri)
+	}
 	xmlData, err := xml.Marshal(obj)
 	if err != nil {
 		return nil, err
 	}
 
 	body := bytes.NewBuffer(xmlData)
-	response, err := http.Post(uri, "application/xml;charset=utf-8", body)
+	response, err := DefaultHTTPClient.Post(uri, "application/xml;charset=utf-8", body)
 	if err != nil {
 		return nil, err
 	}
@@ -216,7 +244,7 @@ func PostXML(uri string, obj interface{}) ([]byte, error) {
 	return io.ReadAll(response.Body)
 }
 
-// httpWithTLS CA证书
+// httpWithTLS CA 证书
 func httpWithTLS(rootCa, key string) (*http.Client, error) {
 	var client *http.Client
 	certData, err := os.ReadFile(rootCa)
@@ -227,15 +255,14 @@ func httpWithTLS(rootCa, key string) (*http.Client, error) {
 	config := &tls.Config{
 		Certificates: []tls.Certificate{cert},
 	}
-	tr := &http.Transport{
-		TLSClientConfig:    config,
-		DisableCompression: true,
-	}
-	client = &http.Client{Transport: tr}
+	trans := (DefaultHTTPClient.Transport.(*http.Transport)).Clone()
+	trans.TLSClientConfig = config
+	trans.DisableCompression = true
+	client = &http.Client{Transport: trans}
 	return client, nil
 }
 
-// pkcs12ToPem 将Pkcs12转成Pem
+// pkcs12ToPem 将 Pkcs12 转成 Pem
 func pkcs12ToPem(p12 []byte, password string) tls.Certificate {
 	blocks, err := pkcs12.ToPEM(p12, password)
 	defer func() {
@@ -259,6 +286,9 @@ func pkcs12ToPem(p12 []byte, password string) tls.Certificate {
 
 // PostXMLWithTLS perform a HTTP/POST request with XML body and TLS
 func PostXMLWithTLS(uri string, obj interface{}, ca, key string) ([]byte, error) {
+	if uriModifier != nil {
+		uri = uriModifier(uri)
+	}
 	xmlData, err := xml.Marshal(obj)
 	if err != nil {
 		return nil, err

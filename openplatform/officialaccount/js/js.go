@@ -3,10 +3,10 @@ package js
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/credential"
-	"github.com/lucidapp/wechatsdk/v2/officialaccount/context"
-	officialJs "github.com/lucidapp/wechatsdk/v2/officialaccount/js"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/credential"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount/context"
+	officialJs "github.com/lucidapp/wechatsdkgo/v2/officialaccount/js"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // Js wx jssdk

@@ -3,12 +3,12 @@ package openplatform
 import (
 	"net/http"
 
-	"github.com/lucidapp/wechatsdk/v2/officialaccount/server"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/account"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/config"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/context"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/miniprogram"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/officialaccount"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount/server"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/account"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/config"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/context"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/miniprogram"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/officialaccount"
 )
 
 // OpenPlatform 微信开放平台相关api

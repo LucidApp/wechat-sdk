@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (

@@ -1,7 +1,7 @@
 package notify
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/pay/config"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/config"
 )
 
 // Notify 回调

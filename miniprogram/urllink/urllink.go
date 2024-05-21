@@ -3,8 +3,8 @@ package urllink
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/miniprogram/context"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // URLLink 小程序 URL Link
@@ -65,8 +65,5 @@ func (u *URLLink) Generate(params *ULParams) (string, error) {
 	}
 	var resp ULResult
 	err = util.DecodeWithError(response, &resp, "URLLink.Generate")
-	if err != nil {
-		return "", err
-	}
-	return resp.URLLink, nil
+	return resp.URLLink, err
 }

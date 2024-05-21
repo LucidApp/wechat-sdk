@@ -1,7 +1,7 @@
 package material
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 素材管理接口实例

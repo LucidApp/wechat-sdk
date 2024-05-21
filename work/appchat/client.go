@@ -2,7 +2,7 @@
 package appchat
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 接口实例

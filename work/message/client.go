@@ -2,7 +2,7 @@
 package message
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 消息推送接口实例

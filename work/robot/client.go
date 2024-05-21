@@ -1,7 +1,7 @@
 package robot
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 群聊机器人接口实例

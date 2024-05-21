@@ -1,6 +1,6 @@
 package account
 
-import "github.com/lucidapp/wechatsdk/v2/openplatform/context"
+import "github.com/lucidapp/wechatsdkgo/v2/openplatform/context"
 
 // Account 开放平台张哈管理
 // TODO 实现方法

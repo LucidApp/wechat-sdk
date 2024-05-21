@@ -1,7 +1,7 @@
 package invoice
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 电子发票接口实例

@@ -1,7 +1,7 @@
 package datacube
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/officialaccount/context"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount/context"
 )
 
 type reqDate struct {

@@ -1,11 +1,12 @@
 package pay
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/pay/config"
-	"github.com/lucidapp/wechatsdk/v2/pay/notify"
-	"github.com/lucidapp/wechatsdk/v2/pay/order"
-	"github.com/lucidapp/wechatsdk/v2/pay/refund"
-	"github.com/lucidapp/wechatsdk/v2/pay/transfer"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/config"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/notify"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/order"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/redpacket"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/refund"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/transfer"
 )
 
 // Pay 微信支付相关API
@@ -36,4 +37,9 @@ func (pay *Pay) GetRefund() *refund.Refund {
 // GetTransfer 付款
 func (pay *Pay) GetTransfer() *transfer.Transfer {
 	return transfer.NewTransfer(pay.cfg)
+}
+
+// GetRedpacket 红包
+func (pay *Pay) GetRedpacket() *redpacket.Redpacket {
+	return redpacket.NewRedpacket(pay.cfg)
 }

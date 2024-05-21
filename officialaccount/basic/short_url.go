@@ -3,7 +3,7 @@ package basic
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
@@ -44,9 +44,6 @@ func (basic *Basic) Long2ShortURL(longURL string) (shortURL string, err error) {
 	if err != nil {
 		return
 	}
-	if err = util.DecodeWithError(responseBytes, resp, long2shortAction); err != nil {
-		return
-	}
-	shortURL = resp.ShortURL
-	return
+	err = util.DecodeWithError(responseBytes, resp, long2shortAction)
+	return resp.ShortURL, err
 }

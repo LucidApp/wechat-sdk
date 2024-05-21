@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/cache"
+	"github.com/lucidapp/wechatsdkgo/v2/cache"
 )
 
 // Config .config for 微信开放平台

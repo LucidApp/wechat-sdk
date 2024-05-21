@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
@@ -62,10 +62,6 @@ func (user *User) ListChangeOpenIDs(fromAppID string, openIDs ...string) (list *
 	}
 
 	err = util.DecodeWithError(resp, list, "ListChangeOpenIDs")
-	if err != nil {
-		return
-	}
-
 	return
 }
 

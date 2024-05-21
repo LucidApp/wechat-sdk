@@ -3,8 +3,8 @@ package subscribe
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/miniprogram/context"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
@@ -168,11 +168,7 @@ func (s *Subscribe) Add(ShortID string, kidList []int, sceneDesc string) (templa
 	}
 	var result resSubscribeAdd
 	err = util.DecodeWithError(response, &result, "AddSubscribe")
-	if err != nil {
-		return
-	}
-	templateID = result.TemplateID
-	return
+	return result.TemplateID, err
 }
 
 // Delete 删除私有模板

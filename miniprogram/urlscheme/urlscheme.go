@@ -3,8 +3,8 @@ package urlscheme
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/miniprogram/context"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // URLScheme 小程序 URL Scheme
@@ -78,8 +78,5 @@ func (u *URLScheme) Generate(params *USParams) (string, error) {
 	}
 	var resp USResult
 	err = util.DecodeWithError(response, &resp, "URLScheme.Generate")
-	if err != nil {
-		return "", err
-	}
-	return resp.OpenLink, nil
+	return resp.OpenLink, err
 }

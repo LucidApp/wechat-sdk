@@ -3,14 +3,14 @@ package miniprogram
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/credential"
-	"github.com/lucidapp/wechatsdk/v2/miniprogram"
-	miniConfig "github.com/lucidapp/wechatsdk/v2/miniprogram/config"
-	miniContext "github.com/lucidapp/wechatsdk/v2/miniprogram/context"
-	"github.com/lucidapp/wechatsdk/v2/miniprogram/urllink"
-	openContext "github.com/lucidapp/wechatsdk/v2/openplatform/context"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/miniprogram/basic"
-	"github.com/lucidapp/wechatsdk/v2/openplatform/miniprogram/component"
+	"github.com/lucidapp/wechatsdkgo/v2/credential"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram"
+	miniConfig "github.com/lucidapp/wechatsdkgo/v2/miniprogram/config"
+	miniContext "github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram/urllink"
+	openContext "github.com/lucidapp/wechatsdkgo/v2/openplatform/context"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/miniprogram/basic"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform/miniprogram/component"
 )
 
 // MiniProgram 代小程序实现业务

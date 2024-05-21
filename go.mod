@@ -1,4 +1,4 @@
-module github.com/lucidapp/wechatsdk/v2
+module github.com/lucidapp/wechatsdkgo/v2
 
 go 1.16
 

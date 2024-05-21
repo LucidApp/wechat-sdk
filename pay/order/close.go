@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"errors"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_3

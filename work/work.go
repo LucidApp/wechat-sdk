@@ -1,19 +1,20 @@
 package work
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/credential"
-	"github.com/lucidapp/wechatsdk/v2/work/addresslist"
-	"github.com/lucidapp/wechatsdk/v2/work/appchat"
-	"github.com/lucidapp/wechatsdk/v2/work/config"
-	"github.com/lucidapp/wechatsdk/v2/work/context"
-	"github.com/lucidapp/wechatsdk/v2/work/externalcontact"
-	"github.com/lucidapp/wechatsdk/v2/work/invoice"
-	"github.com/lucidapp/wechatsdk/v2/work/kf"
-	"github.com/lucidapp/wechatsdk/v2/work/material"
-	"github.com/lucidapp/wechatsdk/v2/work/message"
-	"github.com/lucidapp/wechatsdk/v2/work/msgaudit"
-	"github.com/lucidapp/wechatsdk/v2/work/oauth"
-	"github.com/lucidapp/wechatsdk/v2/work/robot"
+	"github.com/lucidapp/wechatsdkgo/v2/credential"
+	"github.com/lucidapp/wechatsdkgo/v2/work/addresslist"
+	"github.com/lucidapp/wechatsdkgo/v2/work/appchat"
+	"github.com/lucidapp/wechatsdkgo/v2/work/checkin"
+	"github.com/lucidapp/wechatsdkgo/v2/work/config"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/externalcontact"
+	"github.com/lucidapp/wechatsdkgo/v2/work/invoice"
+	"github.com/lucidapp/wechatsdkgo/v2/work/kf"
+	"github.com/lucidapp/wechatsdkgo/v2/work/material"
+	"github.com/lucidapp/wechatsdkgo/v2/work/message"
+	"github.com/lucidapp/wechatsdkgo/v2/work/msgaudit"
+	"github.com/lucidapp/wechatsdkgo/v2/work/oauth"
+	"github.com/lucidapp/wechatsdkgo/v2/work/robot"
 )
 
 // Work 企业微信
@@ -84,4 +85,9 @@ func (wk *Work) GetAppChat() *appchat.Client {
 // GetInvoice get invoice
 func (wk *Work) GetInvoice() *invoice.Client {
 	return invoice.NewClient(wk.ctx)
+}
+
+// GetCheckin 获取打卡接口实例
+func (wk *Work) GetCheckin() *checkin.Client {
+	return checkin.NewClient(wk.ctx)
 }

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/officialaccount/context"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount/context"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
@@ -111,11 +111,7 @@ func (tpl *Template) List() (templateList []*TemplateItem, err error) {
 	}
 	var res resTemplateList
 	err = util.DecodeWithError(response, &res, "ListTemplate")
-	if err != nil {
-		return
-	}
-	templateList = res.TemplateList
-	return
+	return res.TemplateList, err
 }
 
 type resTemplateAdd struct {
@@ -143,11 +139,7 @@ func (tpl *Template) Add(shortID string) (templateID string, err error) {
 
 	var result resTemplateAdd
 	err = util.DecodeWithError(response, &result, "AddTemplate")
-	if err != nil {
-		return
-	}
-	templateID = result.TemplateID
-	return
+	return result.TemplateID, err
 }
 
 // Delete 删除私有模板.

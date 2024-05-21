@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/lucidapp/wechatsdk/v2/officialaccount/context"
-	officialOauth "github.com/lucidapp/wechatsdk/v2/officialaccount/oauth"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount/context"
+	officialOauth "github.com/lucidapp/wechatsdkgo/v2/officialaccount/oauth"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (

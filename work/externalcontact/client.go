@@ -1,7 +1,7 @@
 package externalcontact
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 外部联系接口实例

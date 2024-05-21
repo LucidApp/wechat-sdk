@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // AdSlot 广告位类型
@@ -183,9 +183,6 @@ func (cube *DataCube) fetchData(params ParamsPublisher) (response []byte, err er
 	uri := fmt.Sprintf("%s?%s", publisherURL, v.Encode())
 
 	response, err = util.HTTPGet(uri)
-	if err != nil {
-		return
-	}
 	return
 }
 

@@ -3,7 +3,7 @@ package externalcontact
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
@@ -31,8 +31,5 @@ func (r *Client) GetFollowUserList() ([]string, error) {
 	}
 	var result followerUserResponse
 	err = util.DecodeWithError(response, &result, "GetFollowUserList")
-	if err != nil {
-		return nil, err
-	}
-	return result.FollowUser, nil
+	return result.FollowUser, err
 }

@@ -7,7 +7,7 @@ package msgaudit
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/work/config"
+	"github.com/lucidapp/wechatsdkgo/v2/work/config"
 )
 
 // Client 会话存档

@@ -3,8 +3,8 @@ package content
 import (
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/miniprogram/context"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (

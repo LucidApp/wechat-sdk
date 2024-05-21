@@ -1,8 +1,8 @@
 package context
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/credential"
-	"github.com/lucidapp/wechatsdk/v2/officialaccount/config"
+	"github.com/lucidapp/wechatsdkgo/v2/credential"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount/config"
 )
 
 // Context struct

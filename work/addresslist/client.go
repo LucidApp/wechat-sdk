@@ -1,7 +1,7 @@
 package addresslist
 
 import (
-	"github.com/lucidapp/wechatsdk/v2/work/context"
+	"github.com/lucidapp/wechatsdkgo/v2/work/context"
 )
 
 // Client 通讯录管理接口实例

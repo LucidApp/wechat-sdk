@@ -4,8 +4,8 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/pay/config"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/config"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 var refundGateway = "https://api.mch.weixin.qq.com/secapi/pay/refund"

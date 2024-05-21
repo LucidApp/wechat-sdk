@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/miniprogram/context"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
 )
 
 // Encryptor struct

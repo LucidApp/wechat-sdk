@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lucidapp/wechatsdk/v2/cache"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/cache"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // getTicketURL 获取ticket的url

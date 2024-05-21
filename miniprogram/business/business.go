@@ -1,6 +1,6 @@
 package business
 
-import "github.com/lucidapp/wechatsdk/v2/miniprogram/context"
+import "github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
 
 // Business 业务
 type Business struct {

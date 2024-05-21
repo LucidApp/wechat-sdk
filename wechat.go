@@ -1,21 +1,23 @@
-package wechatsdk
+package wechatsdkgo
 
 import (
+	"net/http"
 	"os"
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/lucidapp/wechatsdk/v2/cache"
-	"github.com/lucidapp/wechatsdk/v2/miniprogram"
-	miniConfig "github.com/lucidapp/wechatsdk/v2/miniprogram/config"
-	"github.com/lucidapp/wechatsdk/v2/officialaccount"
-	offConfig "github.com/lucidapp/wechatsdk/v2/officialaccount/config"
-	"github.com/lucidapp/wechatsdk/v2/openplatform"
-	openConfig "github.com/lucidapp/wechatsdk/v2/openplatform/config"
-	"github.com/lucidapp/wechatsdk/v2/pay"
-	payConfig "github.com/lucidapp/wechatsdk/v2/pay/config"
-	"github.com/lucidapp/wechatsdk/v2/work"
-	workConfig "github.com/lucidapp/wechatsdk/v2/work/config"
+	"github.com/lucidapp/wechatsdkgo/v2/cache"
+	"github.com/lucidapp/wechatsdkgo/v2/miniprogram"
+	miniConfig "github.com/lucidapp/wechatsdkgo/v2/miniprogram/config"
+	"github.com/lucidapp/wechatsdkgo/v2/officialaccount"
+	offConfig "github.com/lucidapp/wechatsdkgo/v2/officialaccount/config"
+	"github.com/lucidapp/wechatsdkgo/v2/openplatform"
+	openConfig "github.com/lucidapp/wechatsdkgo/v2/openplatform/config"
+	"github.com/lucidapp/wechatsdkgo/v2/pay"
+	payConfig "github.com/lucidapp/wechatsdkgo/v2/pay/config"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/work"
+	workConfig "github.com/lucidapp/wechatsdkgo/v2/work/config"
 )
 
 func init() {
@@ -40,7 +42,7 @@ func NewWechat() *Wechat {
 	return &Wechat{}
 }
 
-// SetCache 设置cache
+// SetCache 设置 cache
 func (wc *Wechat) SetCache(cache cache.Cache) {
 	wc.cache = cache
 }
@@ -80,4 +82,9 @@ func (wc *Wechat) GetWork(cfg *workConfig.Config) *work.Work {
 		cfg.Cache = wc.cache
 	}
 	return work.NewWork(cfg)
+}
+
+// SetHTTPClient  设置HTTPClient
+func (wc *Wechat) SetHTTPClient(client *http.Client) {
+	util.DefaultHTTPClient = client
 }

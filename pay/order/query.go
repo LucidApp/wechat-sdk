@@ -4,8 +4,8 @@ import (
 	"encoding/xml"
 	"errors"
 
-	"github.com/lucidapp/wechatsdk/v2/pay/notify"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/pay/notify"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 var queryGateway = "https://api.mch.weixin.qq.com/pay/orderquery"

@@ -13,8 +13,8 @@ import (
 	"encoding/json"
 	"unsafe"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
-	"github.com/lucidapp/wechatsdk/v2/work/config"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/work/config"
 )
 
 // Client 会话存档
@@ -149,10 +149,7 @@ func (s *Client) GetRawChatData(seq uint64, limit uint64, proxy string, passwd s
 
 	var data ChatDataResponse
 	err := json.Unmarshal(buf, &data)
-	if err != nil {
-		return ChatDataResponse{}, err
-	}
-	return data, nil
+	return data, err
 }
 
 // DecryptData 解析密文.企业微信自有解密内容

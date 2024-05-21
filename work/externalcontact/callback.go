@@ -3,7 +3,7 @@ package externalcontact
 import (
 	"encoding/xml"
 
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 // 原始回调消息内容
@@ -38,8 +38,6 @@ func (r *Client) GetCallbackMessage(encryptedMsg []byte) (msg EventCallbackMessa
 	if err != nil {
 		return
 	}
-	if err = xml.Unmarshal(bData, &msg); err != nil {
-		return
-	}
+	err = xml.Unmarshal(bData, &msg)
 	return
 }

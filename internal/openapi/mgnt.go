@@ -4,10 +4,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/lucidapp/wechatsdk/v2/domain/openapi"
-	mpContext "github.com/lucidapp/wechatsdk/v2/miniprogram/context"
-	ocContext "github.com/lucidapp/wechatsdk/v2/officialaccount/context"
-	"github.com/lucidapp/wechatsdk/v2/util"
+	"github.com/lucidapp/wechatsdkgo/v2/domain/openapi"
+	mpContext "github.com/lucidapp/wechatsdkgo/v2/miniprogram/context"
+	ocContext "github.com/lucidapp/wechatsdkgo/v2/officialaccount/context"
+	"github.com/lucidapp/wechatsdkgo/v2/util"
 )
 
 const (
